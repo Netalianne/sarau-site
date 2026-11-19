@@ -1,0 +1,14 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Convite · Sarau</title>
+<link href="https://fonts.googleapis.com/css2?family=Baskervville:wght@600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../estilo.css"></head><body><main>
+<h1>Você recebeu um convite</h1>
+<p>Seu código é:</p><p class="codigo" id="codigo">——</p>
+<p><a class="botao" id="abrir" href="#">Abrir no Sarau</a></p>
+<p>Ainda não tem o app? Baixe na <a href="https://play.google.com/store/apps/details?id=app.sarau.leitura">Google Play</a>, crie sua conta e toque em <strong>Entrar com código</strong>.</p>
+<script>
+var c=(new URLSearchParams(location.search).get('codigo')||'').replace(/[^A-Za-z0-9]/g,'').toUpperCase().slice(0,6);
+document.getElementById('codigo').textContent=c||'——';
+document.getElementById('abrir').href='sarau://convite/'+c;
+</script>
+</main></body></html>

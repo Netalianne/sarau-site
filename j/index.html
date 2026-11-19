@@ -1,0 +1,13 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jornada · Sarau</title>
+<link href="https://fonts.googleapis.com/css2?family=Baskervville:wght@600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../estilo.css"></head><body><main>
+<h1>Você foi convidada para uma jornada de leitura</h1>
+<p>Cada um no seu ritmo, sem ranking.</p>
+<p><a class="botao" id="abrir" href="#">Abrir no Sarau</a></p>
+<p>Ainda não tem o app? Baixe na <a href="https://play.google.com/store/apps/details?id=app.sarau.leitura">Google Play</a>, crie sua conta e abra este link de novo.</p>
+<script>
+var id=(new URLSearchParams(location.search).get('id')||'').replace(/[^0-9a-fA-F-]/g,'').slice(0,36);
+document.getElementById('abrir').href='sarau://desafio-aberto/'+id;
+</script>
+</main></body></html>

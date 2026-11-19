@@ -1,0 +1,9 @@
+body{margin:0;background:#FFF8E7;color:#4D3048;font:17px/1.6 "DM Sans",system-ui,sans-serif}
+main{max-width:680px;margin:0 auto;padding:40px 24px 80px}
+h1,h2{font-family:Baskervville,Georgia,serif;font-weight:600;color:#4D3048}
+h1{font-size:40px;line-height:1.15;margin:0 0 8px;border-bottom:1px solid #D9C7A0;padding-bottom:12px}
+h2{font-size:26px;margin-top:36px}
+a{color:#C98262}.botao{display:inline-block;background:#4D3048;color:#FFF8E7;padding:14px 22px;border-radius:10px;text-decoration:none}
+.codigo{font-size:34px;letter-spacing:8px;font-weight:700}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:15px}th,td{border:1px solid #D9C7A0;padding:8px 10px;text-align:left;vertical-align:top}th{background:#F8ECD8}
+@media(max-width:600px){table{display:block;overflow-x:auto}}

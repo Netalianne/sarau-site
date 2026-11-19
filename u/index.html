@@ -1,0 +1,15 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Perfil · Sarau</title>
+<link href="https://fonts.googleapis.com/css2?family=Baskervville:wght@600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../estilo.css"></head><body><main>
+<p><img src="../simbolo.png" alt="" width="72" height="72"></p>
+<h1 id="titulo">Leitor no Sarau</h1>
+<p>O Sarau é uma rede social de leitores. Para seguir este perfil, abra o app e toque no botão abaixo.</p>
+<p><a class="botao" id="abrir" href="#">Abrir perfil no Sarau</a></p>
+<p>Ainda não tem o app? Baixe na <a href="https://play.google.com/store/apps/details?id=app.sarau.leitura">Google Play</a>, crie sua conta e procure por <strong id="arroba">@</strong> em Encontrar leitores.</p>
+<script>
+var u=(new URLSearchParams(location.search).get('usuario')||'').toLowerCase().replace(/[^a-z0-9_.]/g,'').slice(0,20);
+if(u){document.getElementById('titulo').textContent='@'+u+' no Sarau';document.getElementById('arroba').textContent='@'+u;}
+document.getElementById('abrir').href='sarau://perfil/'+u;
+</script>
+</main></body></html>
