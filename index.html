@@ -106,6 +106,20 @@
     .bloco .ilustra { max-width: 460px; }
   }
 
+  .cartao-perfil { position: relative; }
+  .cartao-perfil-texto { position: absolute; top: 0; bottom: 0; left: 0; width: 40%; padding: 0 0 0 7%; display: flex; flex-direction: column; justify-content: center; }
+  .cartao-perfil-rotulo { font-size: clamp(10px, 1vw, 12px); letter-spacing: .18em; text-transform: uppercase; color: var(--terracota); font-weight: 500; }
+  .cartao-perfil-texto strong { font-family: 'Baskervville', serif; font-weight: 600; font-size: clamp(24px, 3vw, 38px); line-height: 1.1; margin-top: 6px; }
+  .cartao-perfil-texto i { width: 40px; height: 2px; background: var(--terracota); margin: 12px 0; }
+  .cartao-perfil-texto p { font-size: clamp(12px, 1.25vw, 15px); line-height: 1.45; }
+  @media (max-width: 600px) {
+    .cartao-perfil-texto { width: 42%; padding-left: 6%; }
+    .cartao-perfil-rotulo { font-size: 8.5px; letter-spacing: .12em; }
+    .cartao-perfil-texto strong { font-size: 21px; margin-top: 3px; }
+    .cartao-perfil-texto i { width: 28px; margin: 7px 0; }
+    .cartao-perfil-texto p { font-size: 11px; line-height: 1.35; }
+  }
+
   /* desafios */
   .duas { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
   .duas .card { padding: 0; overflow: hidden; display: flex; flex-direction: column; }
@@ -251,7 +265,15 @@
 
   <section class="bloco inverte">
     <div class="miolo">
-      <div class="ilustra surge"><img src="img/perfil.webp" alt="Ilustração do perfil literário Humanista" width="900" height="563" loading="lazy"></div>
+      <div class="ilustra surge cartao-perfil">
+        <img src="img/perfil.webp" alt="Ilustração do perfil literário Humanista" width="900" height="563" loading="lazy">
+        <div class="cartao-perfil-texto">
+          <span class="cartao-perfil-rotulo">Seu perfil literário</span>
+          <strong>Humanista</strong>
+          <i></i>
+          <p>Você lê para entender as pessoas, e os dilemas delas viram seus.</p>
+        </div>
+      </div>
       <div class="texto surge">
         <p class="rotulo">Perfil literário</p>
         <h2>Que leitor <span class="italico">é você?</span></h2>
