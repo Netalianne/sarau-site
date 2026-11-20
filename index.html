@@ -1,11 +1,356 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Sarau · rede social de leitores</title>
-<link href="https://fonts.googleapis.com/css2?family=Baskervville:wght@600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="estilo.css"></head><body><main>
-<p><img src="simbolo.png" alt="" width="72"></p>
-<h1>Sarau</h1>
-<p>Encontre leitores como você. Organize sua estante, registre suas leituras, participe de clubes do livro e desafios.</p>
-<p><a class="botao" href="https://play.google.com/store/apps/details?id=app.sarau.leitura">Baixar na Google Play</a></p>
-<h2>Links</h2>
-<ul><li><a href="termos.html">Termos de uso</a></li><li><a href="privacidade.html">Política de privacidade</a></li><li><a href="excluir-conta.html">Excluir conta</a></li><li>Contato: <a href="mailto:contato.sarauapp@gmail.com">contato.sarauapp@gmail.com</a></li></ul>
-</main></body></html>
+<meta name="description" content="Sarau é a rede social de leitores: organize sua estante, participe de clubes do livro, entre em desafios de leitura e encontre gente que lê parecido com você.">
+<meta property="og:title" content="Sarau · rede social de leitores">
+<meta property="og:description" content="Puxe uma cadeira: estante, clubes do livro, desafios e leitores como você, num só lugar.">
+<meta property="og:image" content="https://netalianne.github.io/sarau-site/img/roda.webp">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#4D3048">
+<link rel="icon" href="simbolo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baskervville:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --marfim: #FFF8E7; --papel: #FFFDF6; --cartao: #F8ECD8; --ameixa: #4D3048; --ameixa-escura: #3A2236;
+    --terracota: #C98262; --salvia: #A8B89F; --salvia-clara: #DDE3D1; --oliva: #6F7F5F; --suave: #7A6274; --linha: #E7D7B8;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--marfim); color: var(--ameixa); font-family: 'DM Sans', system-ui, sans-serif; font-size: 17px; line-height: 1.6; }
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: inherit; }
+  .miolo { width: min(1120px, 100% - 40px); margin-inline: auto; }
+  h1, h2, h3 { font-family: 'Baskervville', Georgia, serif; font-weight: 600; line-height: 1.12; margin: 0; }
+  h2 { font-size: clamp(30px, 4.4vw, 46px); }
+  h3 { font-size: 23px; }
+  .italico { font-family: 'Baskervville', Georgia, serif; font-style: italic; font-weight: 400; }
+  .rotulo { font-size: 13px; letter-spacing: .22em; text-transform: uppercase; color: var(--terracota); font-weight: 500; margin-bottom: 14px; }
+  p { margin: 0; }
+  .suave { color: var(--suave); }
+
+  /* topo */
+  .topo { position: sticky; top: 0; z-index: 10; background: rgba(255,248,231,.92); backdrop-filter: blur(8px); border-bottom: 1px solid transparent; }
+  .topo.rolou { border-color: var(--linha); }
+  .topo .miolo { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+  .marca { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: 'Baskervville', serif; font-size: 28px; font-weight: 600; }
+  .marca img { width: 30px; }
+  .menu { display: flex; gap: 26px; align-items: center; font-size: 15px; }
+  .menu a { text-decoration: none; }
+  .menu a:not(.botao):hover { color: var(--terracota); }
+  @media (max-width: 760px) { .menu a:not(.botao) { display: none; } }
+
+  .botao { display: inline-flex; align-items: center; gap: 10px; background: var(--ameixa); color: var(--marfim); text-decoration: none; font-weight: 500; padding: 14px 24px; border-radius: 999px; transition: transform .15s, background .15s; }
+  .botao:hover { background: var(--ameixa-escura); transform: translateY(-1px); }
+  .botao.pequeno { padding: 9px 18px; font-size: 14px; }
+  .botao.claro { background: transparent; color: var(--ameixa); border: 1.5px solid var(--ameixa); }
+  .botao.desligado { background: transparent; color: var(--suave); border: 1.5px dashed var(--salvia); cursor: default; }
+  .botao.desligado:hover { transform: none; }
+  .botao svg { width: 20px; height: 20px; flex: none; }
+  .lojas { display: flex; flex-wrap: wrap; gap: 12px; }
+
+  /* abertura */
+  .abertura { padding: 56px 0 72px; }
+  .abertura .miolo { display: grid; grid-template-columns: 1.05fr .95fr; gap: 48px; align-items: center; }
+  .abertura h1 { font-size: clamp(42px, 6.4vw, 76px); letter-spacing: -.01em; }
+  .abertura h1 .italico { color: var(--terracota); }
+  .abertura .chamada { font-size: 20px; margin: 22px 0 32px; max-width: 34ch; }
+  .abertura .ilustra { position: relative; }
+  .abertura .ilustra::before { content: ''; position: absolute; inset: 6% 4%; background: var(--cartao); border-radius: 46% 54% 50% 50% / 52% 46% 54% 48%; z-index: -1; }
+  .detalhe { margin-top: 18px; font-size: 14px; }
+  @media (max-width: 860px) {
+    .abertura .miolo { grid-template-columns: 1fr; text-align: center; }
+    .abertura .chamada { margin-inline: auto; }
+    .abertura .lojas { justify-content: center; }
+    .abertura .ilustra { max-width: 300px; margin: 0 auto; order: -1; }
+  }
+
+  /* faixa */
+  .faixa { background: var(--ameixa); color: var(--marfim); padding: 26px 0; }
+  .faixa .miolo { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 40px; font-family: 'Baskervville', serif; font-size: 21px; font-style: italic; }
+  .faixa span::before { content: '✦'; color: var(--terracota); margin-right: 12px; font-style: normal; font-size: 14px; }
+
+  section { padding: 96px 0; }
+  .cabeca { max-width: 640px; margin-bottom: 52px; }
+  .cabeca p { margin-top: 16px; font-size: 19px; }
+  .centro { text-align: center; margin-inline: auto; }
+
+  /* recursos */
+  .grade { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .card { background: var(--papel); border: 1px solid var(--linha); border-radius: 20px; padding: 28px; }
+  .card .icone { width: 46px; height: 46px; border-radius: 14px; background: var(--cartao); display: grid; place-items: center; margin-bottom: 18px; }
+  .card .icone svg { width: 22px; height: 22px; stroke: var(--terracota); }
+  .card p { margin-top: 10px; color: var(--suave); font-size: 16px; }
+  @media (max-width: 900px) { .grade { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 600px) { .grade { grid-template-columns: 1fr; } }
+
+  /* blocos alternados */
+  .bloco .miolo { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+  .bloco.inverte .ilustra { order: 2; }
+  .bloco .ilustra img { border-radius: 28px; }
+  .bloco ul { list-style: none; padding: 0; margin: 26px 0 0; display: grid; gap: 14px; }
+  .bloco li { display: flex; gap: 12px; }
+  .bloco li::before { content: ''; flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--terracota); margin-top: 10px; }
+  .bloco .texto > p { margin-top: 18px; font-size: 18px; }
+  .fundo-cartao { background: var(--cartao); }
+  .mesa { background: #4c1330; border-radius: 28px; padding: 40px 30px 0; overflow: hidden; }
+  .mesa img { border-radius: 0 !important; }
+  @media (max-width: 860px) {
+    .bloco .miolo { grid-template-columns: 1fr; gap: 36px; }
+    .bloco.inverte .ilustra { order: 0; }
+    .bloco .ilustra { max-width: 460px; }
+  }
+
+  /* desafios */
+  .duas { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .duas .card { padding: 0; overflow: hidden; display: flex; flex-direction: column; }
+  .duas .card img { aspect-ratio: 16/10; object-fit: cover; }
+  .duas .card div { padding: 26px 28px 30px; }
+  @media (max-width: 760px) { .duas { grid-template-columns: 1fr; } }
+
+  /* stories */
+  .stories { background: var(--ameixa); color: var(--marfim); overflow: hidden; }
+  .stories .rotulo { color: var(--salvia); }
+  .stories .cabeca p { color: #D9C3CF; }
+  .telas { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+  .telas img { border-radius: 18px; box-shadow: 0 24px 48px rgba(0,0,0,.35); }
+  .telas img:nth-child(even) { transform: translateY(36px); }
+  @media (max-width: 860px) {
+    .telas { grid-template-columns: repeat(4, 62%); overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 50px; }
+    .telas img { scroll-snap-align: center; }
+  }
+
+  /* perguntas */
+  .perguntas { max-width: 760px; margin-inline: auto; }
+  details { border-bottom: 1px solid var(--linha); padding: 22px 0; }
+  summary { cursor: pointer; list-style: none; font-family: 'Baskervville', serif; font-size: 22px; font-weight: 600; display: flex; justify-content: space-between; gap: 16px; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: '+'; color: var(--terracota); font-family: 'DM Sans'; font-weight: 400; }
+  details[open] summary::after { content: '–'; }
+  details p { margin-top: 12px; color: var(--suave); }
+
+  /* convite final */
+  .final { text-align: center; padding: 110px 0; }
+  .final h2 { font-size: clamp(36px, 5.4vw, 60px); }
+  .final p { font-size: 19px; margin: 18px auto 34px; max-width: 46ch; }
+  .final .lojas { justify-content: center; }
+
+  footer { border-top: 1px solid var(--linha); padding: 40px 0 56px; font-size: 15px; }
+  footer .miolo { display: flex; flex-wrap: wrap; gap: 20px 40px; justify-content: space-between; align-items: center; }
+  footer nav { display: flex; flex-wrap: wrap; gap: 8px 24px; }
+  footer a { text-decoration: none; color: var(--suave); }
+  footer a:hover { color: var(--ameixa); }
+
+  .surge { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+  .surge.visivel { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .surge { opacity: 1; transform: none; transition: none; } html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<header class="topo" id="topo">
+  <div class="miolo">
+    <a class="marca" href="#"><img src="simbolo.png" alt="">Sarau</a>
+    <nav class="menu">
+      <a href="#recursos">O que tem</a>
+      <a href="#clubes">Clubes</a>
+      <a href="#perguntas">Perguntas</a>
+      <a class="botao pequeno" href="#baixar">Baixar o app</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="abertura">
+    <div class="miolo">
+      <div>
+        <p class="rotulo">Rede social de leitores</p>
+        <h1>Puxe uma cadeira. <span class="italico">Aqui se lê junto.</span></h1>
+        <p class="chamada suave">Sua estante, seus clubes do livro e leitores que gostam do que você gosta, num só lugar.</p>
+        <div class="lojas">
+          <a class="botao" href="https://play.google.com/store/apps/details?id=app.sarau.leitura">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.2 2.4 13.6 12l-9.4 9.6c-.3-.2-.5-.6-.5-1.1V3.5c0-.5.2-.9.5-1.1Zm10.8 11 2.6 2.6-11 6.3 8.4-8.9Zm3.9-3.9 2.5 1.4c.8.5.8 1.7 0 2.2l-2.5 1.4-2.8-2.5 2.8-2.5ZM6.6 1.7l11 6.3L15 10.6 6.6 1.7Z"/></svg>
+            Baixar no Google Play
+          </a>
+          <span class="botao desligado">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.6 2.1-3.7-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.6-1-2.6-3.9ZM14 5.4c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1.1.1 2.1-.6 2.8-1.4Z"/></svg>
+            Em breve na App Store
+          </span>
+        </div>
+        <p class="detalhe suave">Grátis. Sem anúncios.</p>
+      </div>
+      <div class="ilustra"><img src="img/roda.webp" alt="Quatro pessoas sentadas em roda, conversando sobre livros" width="800" height="800"></div>
+    </div>
+  </section>
+
+  <div class="faixa"><div class="miolo"><span>Estante</span><span>Clubes do livro</span><span>Desafios</span><span>Perfil literário</span><span>Leitores como você</span></div></div>
+
+  <section id="recursos">
+    <div class="miolo">
+      <div class="cabeca surge">
+        <p class="rotulo">O que tem no Sarau</p>
+        <h2>Tudo o que uma vida de leitura pede</h2>
+        <p class="suave">Feito por quem organiza clube do livro e não queria mais ter cinco apps abertos para isso.</p>
+      </div>
+      <div class="grade">
+        <article class="card surge">
+          <div class="icone"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5V4.5A1.5 1.5 0 0 1 5.5 3H20v16H5.5A1.5 1.5 0 0 0 4 20.5 1.5 1.5 0 0 0 5.5 22H20"/></svg></div>
+          <h3>Sua estante</h3>
+          <p>Lendo, lidos, quero ler e os que você tem em casa. Leia o código de barras, traga a estante de outros apps ou fotografe a prateleira.</p>
+        </article>
+        <article class="card surge">
+          <div class="icone"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9.5" r="2.5"/><path d="M3 20c.6-3.4 3-5.5 6-5.5s5.4 2.1 6 5.5M15 15.2c2.6-.4 4.9 1.3 5.5 4.8"/></svg></div>
+          <h3>Clubes do livro</h3>
+          <p>Cronograma por capítulos, encontros com lembrete, conversa por etapa sem spoiler e a Roda de conversa do grupo.</p>
+        </article>
+        <article class="card surge">
+          <div class="icone"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4m0 0h11l-2 4 2 4H5"/></svg></div>
+          <h3>Desafios</h3>
+          <p>Check-in de leitura com amigos, com ranking, e jornadas como "12 livros no ano" que deixam um selo no seu perfil.</p>
+        </article>
+        <article class="card surge">
+          <div class="icone"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.4 6.8 19.1l1-5.8L3.5 9.2l5.9-.9L12 3Z"/></svg></div>
+          <h3>Avaliações e prosas</h3>
+          <p>Notas com meia estrela, resenhas com aviso de spoiler e prosas curtas para comentar o que está lendo.</p>
+        </article>
+        <article class="card surge">
+          <div class="icone"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div>
+          <h3>Estatísticas</h3>
+          <p>Páginas por mês, gêneros e autores do ano, meta de leitura e a sua retrospectiva no fim do ano.</p>
+        </article>
+        <article class="card surge">
+          <div class="icone"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg></div>
+          <h3>Leitores como você</h3>
+          <p>Compatibilidade literária com quem você segue e indicações de quem lê parecido com você.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloco fundo-cartao" id="clubes">
+    <div class="miolo">
+      <div class="ilustra surge mesa"><img src="img/mesa.webp" alt="Duas pessoas lendo e conversando à mesma mesa" width="800" height="560" loading="lazy"></div>
+      <div class="texto surge">
+        <p class="rotulo">Para quem organiza clube do livro</p>
+        <h2>O clube inteiro <span class="italico">no mesmo capítulo</span></h2>
+        <p class="suave">Escolha o livro, marque os encontros e o Sarau divide a leitura em etapas. Cada pessoa marca até onde leu, e o resto fica escondido para ninguém levar spoiler.</p>
+        <ul>
+          <li>Cronograma automático por encontros ou por dias</li>
+          <li>Lembretes dos encontros no celular de todo mundo, na hora que você escolher</li>
+          <li>Roda de conversa do grupo, sem precisar de outro app</li>
+          <li>Clube fechado por código ou aberto para novos leitores</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloco inverte">
+    <div class="miolo">
+      <div class="ilustra surge"><img src="img/perfil.webp" alt="Ilustração do perfil literário Humanista" width="900" height="563" loading="lazy"></div>
+      <div class="texto surge">
+        <p class="rotulo">Perfil literário</p>
+        <h2>Que leitor <span class="italico">é você?</span></h2>
+        <p class="suave">Responda 15 perguntas curtas e descubra o seu perfil entre doze, como Humanista, Cartógrafo ou Gótico. Ele mostra seu jeito de ler, indica livros e ajuda a achar quem lê parecido com você.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="fundo-cartao">
+    <div class="miolo">
+      <div class="cabeca centro surge" style="text-align:center">
+        <p class="rotulo">Desafios</p>
+        <h2>Ler junto rende mais</h2>
+      </div>
+      <div class="duas">
+        <article class="card surge">
+          <img src="img/checkin.webp" alt="" loading="lazy" width="700" height="700">
+          <div>
+            <h3>Check-in com amigos</h3>
+            <p>Crie um desafio, chame quem quiser pelo código e registre a leitura do dia. O ranking mostra quem está firme.</p>
+          </div>
+        </article>
+        <article class="card surge">
+          <img src="img/jornada.webp" alt="" loading="lazy" width="700" height="700">
+          <div>
+            <h3>Jornadas</h3>
+            <p>Metas maiores, como uma lista de clássicos ou 30 dias de leitura. Quem completa ganha um selo no perfil.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="stories">
+    <div class="miolo">
+      <div class="cabeca surge">
+        <p class="rotulo">Compartilhe</p>
+        <h2>Suas leituras <span class="italico">nos seus stories</span></h2>
+        <p>Terminou um livro, bateu a meta ou fechou o ano? O Sarau monta a imagem pronta para o Instagram e o status do WhatsApp.</p>
+      </div>
+      <div class="telas">
+        <img src="img/story-retrospectiva.webp" alt="Exemplo de story da retrospectiva do ano" loading="lazy" width="540" height="960">
+        <img src="img/story-terminei.webp" alt="Exemplo de story de livro terminado" loading="lazy" width="540" height="960">
+        <img src="img/story-lendo.webp" alt="Exemplo de story de livro em leitura" loading="lazy" width="540" height="960">
+        <img src="img/story-compatibilidade.webp" alt="Exemplo de story de compatibilidade literária" loading="lazy" width="540" height="960">
+      </div>
+    </div>
+  </section>
+
+  <section id="perguntas">
+    <div class="miolo">
+      <div class="cabeca centro surge" style="text-align:center">
+        <p class="rotulo">Perguntas</p>
+        <h2>Antes de puxar a cadeira</h2>
+      </div>
+      <div class="perguntas">
+        <details><summary>O Sarau é grátis?</summary><p>Sim. Dá para usar tudo sem pagar e sem anúncios.</p></details>
+        <details><summary>Funciona no iPhone?</summary><p>A versão para Android já está no Google Play. A do iPhone está a caminho da App Store.</p></details>
+        <details><summary>Consigo trazer minha estante de outro app?</summary><p>Consegue. Dá para importar um arquivo .csv, ler o código de barras dos seus livros ou fotografar a prateleira para o app reconhecer os títulos.</p></details>
+        <details><summary>Quem vê o que eu leio?</summary><p>Você escolhe. O perfil pode ser só para quem você aprovar, e dá para esconder livros específicos. Sua meta e suas estatísticas são só suas.</p></details>
+        <details><summary>Posso levar o meu clube do livro?</summary><p>Pode. Crie o clube, convide o grupo pelo código e use o cronograma, os encontros e a Roda de conversa no lugar de vários apps.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="final fundo-cartao" id="baixar">
+    <div class="miolo surge">
+      <img src="img/logo.webp" alt="Sarau" width="900" height="300" style="width:220px;margin:0 auto 28px;mix-blend-mode:multiply">
+      <h2>Tem uma cadeira <span class="italico">esperando por você</span></h2>
+      <p class="suave">Baixe o Sarau, monte a sua estante e encontre a sua roda de leitura.</p>
+      <div class="lojas">
+        <a class="botao" href="https://play.google.com/store/apps/details?id=app.sarau.leitura">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.2 2.4 13.6 12l-9.4 9.6c-.3-.2-.5-.6-.5-1.1V3.5c0-.5.2-.9.5-1.1Zm10.8 11 2.6 2.6-11 6.3 8.4-8.9Zm3.9-3.9 2.5 1.4c.8.5.8 1.7 0 2.2l-2.5 1.4-2.8-2.5 2.8-2.5ZM6.6 1.7l11 6.3L15 10.6 6.6 1.7Z"/></svg>
+          Baixar no Google Play
+        </a>
+        <span class="botao desligado">Em breve na App Store</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="miolo">
+    <a class="marca" href="#" style="font-size:22px"><img src="simbolo.png" alt="" style="width:24px">Sarau</a>
+    <nav>
+      <a href="termos.html">Termos de uso</a>
+      <a href="privacidade.html">Privacidade</a>
+      <a href="excluir-conta.html">Excluir conta</a>
+      <a href="mailto:contato.sarauapp@gmail.com">contato.sarauapp@gmail.com</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+  const topo = document.getElementById('topo');
+  addEventListener('scroll', () => topo.classList.toggle('rolou', scrollY > 8), { passive: true });
+  const obs = new IntersectionObserver((itens) => itens.forEach((i) => {
+    if (i.isIntersecting) { i.target.classList.add('visivel'); obs.unobserve(i.target); }
+  }), { threshold: 0.15 });
+  document.querySelectorAll('.surge').forEach((el) => obs.observe(el));
+</script>
+</body>
+</html>
