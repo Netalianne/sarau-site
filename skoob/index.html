@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Traga sua estante do Skoob · Sarau</title>
+<meta name="description" content="Extensão do Sarau para levar sua estante do Skoob: livros, notas, datas e resenhas.">
+<link rel="icon" href="../simbolo.png">
+<link href="https://fonts.googleapis.com/css2?family=Baskervville:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../estilo.css">
+<style>
+  .chamada { font-family: Baskervville, Georgia, serif; font-style: italic; font-size: 22px; margin: 4px 0 24px; }
+  .topo { display: flex; gap: 28px; align-items: flex-start; flex-wrap: wrap; }
+  .topo > div { flex: 1 1 300px; }
+  .previa { width: 260px; max-width: 100%; border-radius: 18px; box-shadow: 0 10px 30px rgba(77, 48, 72, .18); }
+  .lista-ok { list-style: none; padding: 0; }
+  .lista-ok li { padding: 4px 0 4px 28px; position: relative; }
+  .lista-ok li::before { content: '✓'; position: absolute; left: 0; color: #6F7F5F; font-weight: 700; }
+  .passo { background: #FFFDF6; border: 1px solid #E7D7B8; border-radius: 16px; padding: 16px 20px; margin: 12px 0; }
+  .passo b.n { display: inline-flex; width: 28px; height: 28px; border-radius: 50%; background: #C98262; color: #FFF8E7; align-items: center; justify-content: center; margin-right: 8px; }
+  code { background: #F8ECD8; padding: 2px 6px; border-radius: 6px; font-size: 15px; }
+  .aviso { background: #F8ECD8; border-left: 4px solid #C98262; border-radius: 10px; padding: 12px 16px; font-size: 15px; }
+  .miudo { font-size: 14px; color: #7A6274; }
+  details { border-top: 1px solid #E7D7B8; padding: 12px 0; }
+  summary { cursor: pointer; font-weight: 500; }
+</style>
+</head>
+<body><main>
+<p><a href="../"><img src="../img/logo-horizontal.png" alt="Sarau" height="40"></a></p>
+<h1>Traga sua estante do Skoob</h1>
+<p class="chamada">Seus livros, suas notas e suas resenhas, sem começar do zero.</p>
+
+<div class="topo">
+  <div>
+    <p>A extensão <strong>Importar Skoob para o Sarau</strong> lê a sua estante do Skoob, no seu computador, e gera um arquivo que o Sarau importa em poucos toques.</p>
+    <ul class="lista-ok">
+      <li>Lidos, lendo e quero ler</li>
+      <li>Notas, com meia estrela</li>
+      <li>Datas em que você terminou cada livro</li>
+      <li>Suas resenhas</li>
+      <li>ISBN de cada livro, para achar a edição certa</li>
+    </ul>
+    <p><a class="botao" href="extensao-skoob-sarau.zip" download>Baixar a extensão (.zip)</a></p>
+    <p class="miudo">Para Google Chrome no computador (Windows, Mac ou Linux). Versão de teste.</p>
+  </div>
+  <img class="previa" src="previa.webp" alt="Tela da extensão mostrando a estante pronta para o Sarau">
+</div>
+
+<h2>Como instalar</h2>
+<p class="aviso">A extensão ainda está em teste e não está na Chrome Web Store. Por enquanto, a instalação é feita pelo modo de programador do Chrome. São só uma vez e uns 2 minutos.</p>
+<div class="passo"><b class="n">1</b><strong>Baixe e extraia.</strong> Baixe o arquivo acima, clique nele com o botão direito e escolha <em>Extrair tudo</em>. Guarde a pasta <code>extensao-skoob-sarau</code> num lugar que você não vá apagar, como Documentos.</div>
+<div class="passo"><b class="n">2</b><strong>Abra as extensões do Chrome.</strong> Digite <code>chrome://extensions</code> na barra de endereços e aperte Enter.</div>
+<div class="passo"><b class="n">3</b><strong>Ligue o modo de programador</strong> (ou <em>Modo do desenvolvedor</em>), no canto de cima, à direita.</div>
+<div class="passo"><b class="n">4</b><strong>Clique em <em>Carregar sem compactação</em></strong> (ou <em>Carregar expandida</em>) e escolha a pasta <code>extensao-skoob-sarau</code>, a que tem o arquivo <code>manifest.json</code> dentro.</div>
+<div class="passo"><b class="n">5</b><strong>Fixe o ícone.</strong> Clique no quebra-cabeça 🧩 do Chrome e fixe <em>Importar Skoob para o Sarau</em>.</div>
+
+<h2>Como usar</h2>
+<div class="passo"><b class="n">1</b>Entre no Skoob, abra a <strong>Estante</strong> do seu perfil e aperte <strong>F5</strong>.</div>
+<div class="passo"><b class="n">2</b>Clique no ícone do Sarau e em <strong>Coletar minha estante</strong>. Leva alguns minutos. Pode fechar a janelinha: a coleta continua na aba do Skoob.</div>
+<div class="passo"><b class="n">3</b>Quando aparecer <strong>Sua estante está pronta</strong>, clique em <strong>Baixar arquivo para o Sarau</strong>. O arquivo vai para a pasta Downloads.</div>
+<div class="passo"><b class="n">4</b>Mande o arquivo para o celular (por e-mail, WhatsApp ou Google Drive). No Sarau, vá em <strong>Estante › + › Importar</strong> e escolha o arquivo. Deixe o app aberto até terminar.</div>
+
+<h2>Perguntas</h2>
+<details><summary>Meus dados vão para algum lugar?</summary><p>Não. A extensão usa a sua própria conta do Skoob, no seu computador, e só guarda os dados dentro dela até virar o arquivo. Nada é enviado para o Sarau nem para ninguém até você mesma importar o arquivo no app.</p></details>
+<details><summary>Alguns livros aparecem como "Sem ISBN". E agora?</summary><p>Eles vão no arquivo mesmo assim: o Sarau procura pelo título e pelo autor. Se algum não for encontrado, dá para adicionar na hora da importação e colocar a capa depois, pela página do livro.</p></details>
+<details><summary>Por que alguns livros "Não vão para o Sarau"?</summary><p>A extensão mostra o motivo de cada um: abandonados (o Sarau ainda não importa), desejados (marque a opção para levar como Quero ler) e livros que estão só em "Tenho" no Skoob, sem estante de leitura.</p></details>
+<details><summary>Funciona no celular?</summary><p>Não: extensões só funcionam no Chrome do computador. Se você não tem computador, pode exportar sua estante por outras extensões ou planilhas: o Sarau lê arquivos do Goodreads, do StoryGraph e planilhas simples.</p></details>
+<details><summary>Deu erro. O que eu faço?</summary><p>Aperte F5 na aba do Skoob e tente de novo. Se continuar, escreva para <a href="mailto:contato.sarauapp@gmail.com">contato.sarauapp@gmail.com</a> ou use <em>Conta › Enviar opinião ou erro</em> no app.</p></details>
+
+<p class="miudo" style="margin-top:40px">O Sarau não tem ligação com o Skoob. A extensão apenas ajuda você a levar os seus próprios dados de leitura. · <a href="../privacidade.html">Privacidade</a></p>
+</main></body>
+</html>
